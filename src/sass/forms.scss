@@ -1,0 +1,8 @@
+@import '_vars.scss';
+
+a{
+    @include underlined();
+    color: #2828ff;
+    text-decoration: none;
+    outline: none;
+}

@@ -1,0 +1,20 @@
+@import '_vars.scss';
+
+$letters:Q, W, E, R, T, Y, U, I, O, P, A, S, D, F, G, H, J, K, L, Z, X, C, V, B, N, M;
+$size: 2rem;
+
+.avatar{
+    width: $size;height: $size;
+    border-radius: 50%;
+    padding: 5px;
+    @for $i from 1 through length($letters) {
+        $class: nth($letters, $i);
+        $color: nth($colors, ($i % length($colors))+1);
+        &.#{$class}{
+            background: $color;
+            @if (lightness($color) < 55%) {
+                color: #ffffff;
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+@import '_vars.scss';
+
+nav{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly !important;
+
+    @include themed();
+}
