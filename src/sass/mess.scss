@@ -1,0 +1,12 @@
+@import '_vars.scss';
+
+.chats{
+    max-width: 100%;
+    @include center-column(center);
+}
+
+.message{
+    *{
+        justify-content: flex-start;
+    }
+}

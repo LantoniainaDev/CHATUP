@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Avatar from '../components/Avatar';
 import Navigation from '../components/Navigation';
 
-const Me = () => {
+const Profil = () => {
     // eslint-disable-next-line
     const [profile,setprofile] = useState({
         name:"Anon",
@@ -26,13 +26,13 @@ const Me = () => {
             <Navigation/>
             <Avatar onClick={(e)=>console.log(e)}>avatar</Avatar>
             <p className='animated-secondary'>Nom: {profile.name}</p>
-            <p>Prenom: {profile.firstName}</p>
-            <p>Date de naissance: {formatDate(profile.birth)}</p>
-            <p>Membre depuis le {formatDate(profile.signinDate)}</p>
+            <p className='animated-secondary'>Prenom: {profile.firstName}</p>
+            <p className='animated-secondary'>Date de naissance: {formatDate(profile.birth)}</p>
+            <p className='animated-warning'>Membre depuis le {formatDate(profile.signinDate)}</p>
             <button>Se deconnecter</button>
             <button className='warning'>Modifier mon compte</button>
         </div>
     );
 };
 
-export default Me;
+export default Profil;

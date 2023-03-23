@@ -121,11 +121,22 @@ form.left{
     @include center-column(flex-start);
 }
 
+.box{
+    @extend .form;
+    width: fit-content;
+    min-width: 50%;
+    max-width: 90%;
+    box-shadow: 0px 1px 4px 1px #3e3e3eb5;
+    margin: 10px;
+    border-radius: 5px;
+}
+
 @for $i from 1 through length($colors) {
     $class:nth($cls, $i );
     $color:nth($colors, $i );
     .animated-#{$class}{
         position: relative;
+        cursor:copy;
     
         &:hover{
             transition: .3s;
