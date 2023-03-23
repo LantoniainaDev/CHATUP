@@ -121,6 +121,30 @@ form.left{
     @include center-column(flex-start);
 }
 
+@for $i from 1 through length($colors) {
+    $class:nth($cls, $i );
+    $color:nth($colors, $i );
+    .animated-#{$class}{
+        position: relative;
+    
+        &:hover{
+            transition: .3s;
+            color: rgba($color, 1);
+            &::after{
+                position: absolute;
+                content: '';
+                box-sizing: border-box;
+                height: 3px;
+                width: 100%;
+                bottom: 0;
+                border-radius: 3px;
+                background: rgba($color, 1);
+                animation: border 1s linear forwards;
+            }
+        }
+    }
+}
+
 //--------------------------------------
 @keyframes appear {
     0%{
@@ -131,5 +155,31 @@ form.left{
     }
    100%{
         transform: scaleX(1);
+    }
+}
+
+@keyframes border {
+    $s:10%;
+    0%{
+        clip-path: polygon(0 0,$s 0, $s 100%, 0 100%);
+        opacity: 0;
+    }
+    20%{
+        clip-path: polygon(0 0,$s 0, $s 100%, 0 100%);
+        opacity: 1;
+    }
+    80%{
+        opacity: 1;
+        clip-path: polygon(calc(100% - $s) 0,
+         100% 0,
+         100% 100%,
+         calc(100% - $s) 100%);
+    }
+    100%{
+        clip-path: polygon(calc(100% - $s) 0,
+         100% 0,
+         100% 100%,
+         calc(100% - $s) 100%);
+        opacity: 0;
     }
 }

@@ -19,7 +19,6 @@ const Login = () => {
             <label htmlFor="password">Mot de passe:</label>
             <input type="password"  id='password'/>
 
-
             <p>
                 <button type="submit">Envoyer</button>
                 <button className='alert' type="reset">Annuler</button>

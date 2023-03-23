@@ -6,4 +6,8 @@ nav{
     justify-content: space-evenly !important;
 
     @include themed();
+
+    *{
+        color: white;
+    }
 }
