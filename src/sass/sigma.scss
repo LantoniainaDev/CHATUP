@@ -59,10 +59,6 @@ input[type=tel],input[type=search],input[type=file],input[type=week]{
         animation: appear .2s forwards;
     }
 
-    &:required{
-        background-color: red;
-    }
-
     // classes
     $cls: primary alert warning;
     $colors: $primary $alert $warning;
@@ -153,6 +149,14 @@ form.left{
                 animation: border 1s linear forwards;
             }
         }
+    }
+}
+
+@for $i from 1 through length($colors) {
+    $color : nth($list: $colors, $n: $i);
+    $class : nth($list: $cls, $n: $i);
+    .text-#{$class}{
+        color: $color;
     }
 }
 

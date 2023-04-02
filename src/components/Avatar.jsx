@@ -5,7 +5,6 @@ import '../sass/avatar.scss';
 const Avatar = (props) => {
     const [letter, setLetter] = useState("X");
     useEffect(()=>{
-        console.log(props);
         setLetter(props.children[0].toUpperCase());
     },[props,letter])
     return (

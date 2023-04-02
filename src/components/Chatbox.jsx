@@ -1,10 +1,14 @@
 import React from 'react';
 import Avatar from './Avatar';
 
-const chatBox = () => {
+const chatBox = ({ profile }) => {
+    function chat(e) {
+        e.preventDefault();
+        console.log("post message");
+    }
     return (
-        <form className='box body'>
-            <Avatar>Nom</Avatar>
+        <form onSubmit={chat} className='box body'>
+            <Avatar>{profile?.name || "X"}</Avatar>
             <input type="text" placeholder='Message...'/>
             <p>
                 <button type="submit">Poster</button>

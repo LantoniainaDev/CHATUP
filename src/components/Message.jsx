@@ -5,6 +5,7 @@ import '../sass/mess.scss';
 const Message = () => {
     return (
         <div className='box message'>
+            
             <div>
             <Avatar>Nom</Avatar>
             <span className='animated-primary'> Nom Complet</span>
