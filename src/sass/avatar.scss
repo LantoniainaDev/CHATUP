@@ -1,4 +1,5 @@
 @import '_vars.scss';
+@import "_gradient.scss";
 
 $letters:Q, W, E, R, T, Y, U, I, O, P, A, S, D, F, G, H, J, K, L, Z, X, C, V, B, N, M;
 $size: 2rem;
@@ -8,14 +9,52 @@ $size: 2rem;
     width: $size;height: $size;
     border-radius: 50%;
     padding: 5px;margin: 5px;
-    @for $i from 1 through length($letters) {
-        $class: nth($letters, $i);
-        $color: nth($colors, ($i % length($colors))+1);
-        &.#{$class}{
-            background: $color;
-            @if (lightness($color) < 55%) {
-                color: #ffffff;
-            }
+    position:relative;
+    &::after,&::before{
+        content:" ";
+        position:absolute;
+        width:100%;height:100%;
+        border-radius:50%;
+        background: #ffffff00;
+    }
+
+    &:hover{
+        $duration:.6s;
+        &::after{
+            animation: bulle $duration forwards linear;
         }
+        &::before{
+            animation: bulle $duration calc($duration/2) forwards linear;
+        }
+    }
+}
+@for $i from 1 through length($letters) {
+    $class: nth($letters, $i);
+    $color: nth($colors, ($i % length($colors))+1);
+    .avatar.#{$class},.#{$class}{
+        // background: $color;
+        @include graded($i);
+        // @if (lightness($color) < 50%) {
+        //     color: #ffffff;
+        // }
+    }
+
+    @include animated($class,$color);
+}
+
+
+//keyframes
+@keyframes bulle{
+    $s:10px;
+    0%{
+        transform:scale(.1);
+        border: solid $s rgb(255 255 255 / 65%);
+    }
+    90%{
+        border: solid $s rgb(255 255 255 / 100%);
+    }
+    100%{
+        transform:scale(1);
+        border: solid 0 white;
     }
 }

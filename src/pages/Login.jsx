@@ -41,7 +41,7 @@ const Login = () => {
     }
 
     return (
-        <form onSubmit={login} ref={form} className='form'>
+        <form onSubmit={login} ref={form} className='form page'>
             {nav}
             <h1>Connexion</h1>
             <label htmlFor="name">Nom:</label>

@@ -32,7 +32,7 @@ const Signin = () => {
     }
 
     return (
-        <form ref={form} onSubmit={signin} className='form'>
+        <form ref={form} onSubmit={signin} className='form page'>
             {path}
         <h1 className='primary'>Inscription</h1>
         <label htmlFor="email">E-mail:</label>

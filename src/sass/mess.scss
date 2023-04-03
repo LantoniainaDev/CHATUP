@@ -3,10 +3,20 @@
 .chats{
     max-width: 100%;
     @include center-column(center);
+    width: 100%;
 }
 
 .message{
     *{
         justify-content: flex-start;
+        max-width: 100%;
     }
+    p.txt{
+        line-break: anywhere;
+    }
+}
+
+sub{
+    color: rgba($color: grey, $alpha: .7);
+    font-size: 1rem;
 }

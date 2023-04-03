@@ -65,4 +65,26 @@ $cls: alert primary secondary warning;
     }
 }
 
+@mixin animated($class,$color){
+    .animated-#{$class}{
+        position: relative;
+        cursor:copy;
+    
+        &:hover{
+            transition: .3s;
+            color: rgba($color, 1);
+            &::after{
+                position: absolute;
+                content: '';
+                box-sizing: border-box;
+                height: 3px;
+                width: 100%;
+                bottom: 0;
+                border-radius: 3px;
+                background: rgba($color, 1);
+                animation: border 1s linear forwards;
+            }
+        }
+    }
+}
 //--------------------------------------

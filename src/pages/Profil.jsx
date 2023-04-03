@@ -43,7 +43,7 @@ const Profil = () => {
         <div className='App'>
             <Navigation/>
             {profile?
-            <div className='about App'>
+            <div className='about App page'>
                 {nav}
                 <Avatar onClick={(e)=>console.log(e)}>{profile?.firstname}</Avatar>
                 <p className='animated-secondary'>Nom: {profile?.name}</p>

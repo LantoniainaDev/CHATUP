@@ -4,6 +4,7 @@ nav{
     display: flex;
     width: 100%;
     justify-content: space-evenly !important;
+    padding: 10px 5px;
 
     @include themed();
 
