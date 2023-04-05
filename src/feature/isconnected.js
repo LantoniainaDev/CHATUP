@@ -11,6 +11,17 @@ export const about = (id,params) =>{
      .then(({data})=>data);
 }
 
+/**
+ * 
+ * @param {String} comId l'id de la publication dont on souhaite obtenir les commentaires
+ * @param {Object} params parametre de la requete e.g. {token}
+ * @returns 
+ */
+export const com=(comId,params= {}) =>{
+    return axios.get(process.env.REACT_APP_BASE_URI+"/coms/"+comId,params)
+     .then(({data})=>data)
+}
+
 export default function isconnected(token) {
     return axios.get(process.env.REACT_APP_BASE_URI+"/user",{
         params:{token}

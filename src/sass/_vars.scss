@@ -9,9 +9,9 @@ $colors:$alert $primary $secondary $warning;
 $cls: alert primary secondary warning;
 
 //------------classe usuelles-----------
-@mixin center-column($al:stretch) {
+@mixin center-column($al:stretch,$j:center) {
     display: flex;
-    justify-content: center;
+    justify-content: $j;
     align-items: $al;
     flex-direction: column;
 

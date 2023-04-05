@@ -1,15 +1,23 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import '../sass/header.scss';
 
-const Navigation = () => {
+const Navigation = ({children, user}) => {
     const profile = useSelector(state=>state.user);
-    console.log(profile);
+    const cls = ()=>{
+        const cls = user? user.firstname[0].toUpperCase():profile.firstname[0].toUpperCase();
+        return cls;
+    }
     return (
-        <nav className={profile? profile.firstname[0].toUpperCase(): 'primary'}>
-            <NavLink to='/' >Chat</NavLink>
-            <NavLink to='/profil' >Mon profile</NavLink>
+        <nav className={profile || user ? cls(): 'primary'}>
+            {children? children:(
+                <>
+                <NavLink to="/">Chat</NavLink>
+                <NavLink to="/users">rencontre</NavLink>
+                <NavLink to="/profil">Mon profil</NavLink>
+                </>
+            )}
         </nav>
     );
 };

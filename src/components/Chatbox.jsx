@@ -19,7 +19,7 @@ const ChatBox = ({ profile, onPosted }) => {
     return profile? (
         <form ref={form} onSubmit={chat} className='box body'>
             <Avatar>{profile.firstname || "X"}</Avatar>
-            <textarea name="content" type="text" placeholder='Message...'/>
+            <textarea name="content" type="text" placeholder='Message...' required/>
             <p>
                 <button type="submit">Poster</button>
                 <button className='alert' type="reset">Annuler</button>

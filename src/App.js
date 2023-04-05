@@ -6,6 +6,8 @@ import Profil from "./pages/Profil";
 import {  useDispatch } from "react-redux";
 import isconnected from "./feature/isconnected";
 import { setToken, setUser } from "./feature/user.slice";
+import Users from "./pages/Users";
+import UserInfo from "./pages/UserInfo";
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
           <Route path="/" element={<ChatWall/>}/>
           <Route path="/profil" element={<Profil/>}/>
           <Route path="/signin" element={<Signin/>}/>
+          <Route path="/users/" element={<Users/>}/>
+          <Route path="/user/:id" element={<UserInfo/>}/>
           <Route path="*" element={<Login/>}/>
         </Routes>
       </BrowserRouter>

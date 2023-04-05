@@ -20,3 +20,57 @@ sub{
     color: rgba($color: grey, $alpha: .7);
     font-size: 1rem;
 }
+
+.comments{
+    box-sizing: border-box;
+    @include center-column(center,stretch);
+    box-shadow: inset 1px 0px 8px 0px rgb(41 41 41 / 56%);
+    margin: 5px;
+    padding: 5px;border-radius: 3px;
+    width: calc(100% - 5px *2);
+
+    animation: deroule .5s forwards cubic-bezier(0.28, 0.02, 0.42, 0.96);
+
+    .com-stretch{
+        width: 100%;
+        @include center-column(flex-start);
+        padding: 2px 0;
+        &.mine{
+            align-items: flex-end;
+            .com{
+            border-radius: 8px;
+            border-bottom-right-radius: 2px;
+            }
+        }
+
+        .com{
+            @include center-column(flex-start);
+            border-radius: 8px;
+            border-bottom-left-radius: 2px;
+            padding: 5px;
+            // float: left;
+            sup{
+                font-size: 1rem;
+                color: #f0f8ffd5;
+            }
+        }
+
+    }
+
+    form{
+        width: 100%;
+    }
+}
+
+
+// /animation
+@keyframes deroule {
+    from{
+        clip-path: polygon(0 0,0 0, 100% 0, 100% 0);
+        // opacity: 0;
+    }
+    to{
+        clip-path: polygon(0 0,0 100%, 100% 100%, 100% 0);
+        // opacity: 1;
+    }
+}
