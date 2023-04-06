@@ -17,9 +17,9 @@ const Navigation = ({ user }) => {
         <nav ref={navDom} className={profile || user ? cls(): 'primary'}>
             <ScrollTo className={profile || user ? cls("name"): 'primary'} reference={navDom}></ScrollTo>
             <BackButton className={profile || user ? cls("name"): 'primary'}></BackButton>
-                <NavLink to="/">Chat</NavLink>
+                <NavLink to="/">Pubs</NavLink>
                 <NavLink to="/users">rencontre</NavLink>
-                <NavLink to="/profil">Mon profil</NavLink>
+                <NavLink to={profile? "/profil":"/login"}>{profile? "Mon profil":"se connecter"}</NavLink>
         </nav>
     );
 };

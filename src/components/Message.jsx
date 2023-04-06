@@ -10,6 +10,7 @@ import axios from 'axios';
 const Message = ({ data }) => {
     const [user,setUser] = useState({});
     const [coms,setComs] = useState([]);
+    const [suppred,setSuppred] = useState(false);
     const token = useSelector(state=>state.token);
     const id = useSelector(state=>state.user?state.user._id:null);
     const inpt = useRef();
@@ -42,8 +43,19 @@ const Message = ({ data }) => {
         axios.post(process.env.REACT_APP_BASE_URI+"/coms/"+data._id,{content},{params:{token}})
          .then(fetchComs).then(()=>inpt.current.value = "");
     }
+
+    function suppr() {
+        axios.delete(process.env.REACT_APP_BASE_URI+"/pubs/post/"+data._id,{params:{token}})
+         .then(()=>setSuppred(true));
+    }
+
+    function like() {
+        axios.patch(process.env.REACT_APP_BASE_URI+"/pubs/post/"+data._id,{},{params:{token}})
+         .then(console.log)
+    }
+
     return (
-        <div className='box message'>
+        <div className={`box message ${suppred? 'bg-alert':''}`}>
             
             <div>
             <Avatar>{user?.firstname || "X"}</Avatar>
@@ -52,8 +64,9 @@ const Message = ({ data }) => {
             <sub>publié le {format(data?.date)}</sub>
             <p className='txt App'>{data?.content}</p>
             <p>
+                {id? <button disabled={data?.likes.includes(id)} className='alert' onClick={like}>{data?.likes.length} Aimer</button>:null}
                 {id? <button onClick={()=>setEditing(!editing)}>{coms.length} Commentaires</button>: null}
-                {id === user._id? <button className='alert'>Supprimer</button>: null}
+                {id === user._id? <button onClick={suppr} className='alert'>Supprimer</button>: null}
             </p>
             {editing? 
             <div className='comments'>

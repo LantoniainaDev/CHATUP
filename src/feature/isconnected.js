@@ -19,7 +19,7 @@ export const about = (id,params) =>{
  */
 export const com=(comId,params= {}) =>{
     return axios.get(process.env.REACT_APP_BASE_URI+"/coms/"+comId,params)
-     .then(({data})=>data)
+     .then(({data})=>data.reverse())
 }
 
 export default function isconnected(token) {
