@@ -9,7 +9,7 @@ const Comment = ({com}) => {
     useEffect(()=>{
         const filter="firstname name";
         about(com.author,{filter}).then(setAuthor);
-    },[])
+    },[com.author])
     return (
         <div className={`com-stretch ${id === author._id ? "mine": null}`}>
         <div className={`com ${author.firstname[0]}`}>

@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import '../sass/header.scss';
+import BackButton from './BackButton';
+import ScrollTo from './ScrollTo';
 
-const Navigation = ({children, user}) => {
+const Navigation = ({ user }) => {
     const profile = useSelector(state=>state.user);
-    const cls = ()=>{
-        const cls = user? user.firstname[0].toUpperCase():profile.firstname[0].toUpperCase();
+    const navDom = useRef();
+
+    const cls = (uit= "firstname")=>{
+        const cls = user? user[uit][0].toUpperCase():profile[uit][0].toUpperCase();
         return cls;
     }
     return (
-        <nav className={profile || user ? cls(): 'primary'}>
-            {children? children:(
-                <>
+        <nav ref={navDom} className={profile || user ? cls(): 'primary'}>
+            <ScrollTo className={profile || user ? cls("name"): 'primary'} reference={navDom}></ScrollTo>
+            <BackButton className={profile || user ? cls("name"): 'primary'}></BackButton>
                 <NavLink to="/">Chat</NavLink>
                 <NavLink to="/users">rencontre</NavLink>
                 <NavLink to="/profil">Mon profil</NavLink>
-                </>
-            )}
         </nav>
     );
 };

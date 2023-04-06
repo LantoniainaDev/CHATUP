@@ -52,7 +52,7 @@ const Message = ({ data }) => {
             <sub>publié le {format(data?.date)}</sub>
             <p className='txt App'>{data?.content}</p>
             <p>
-                {id? <button onClick={()=>setEditing(!editing)}>Commentaires</button>: null}
+                {id? <button onClick={()=>setEditing(!editing)}>{coms.length} Commentaires</button>: null}
                 {id === user._id? <button className='alert'>Supprimer</button>: null}
             </p>
             {editing? 

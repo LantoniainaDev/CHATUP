@@ -1,13 +1,13 @@
 // eslint-disable-next-line
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
-import { NavLink,Navigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Signin = () => {
     const form = useRef();
     const [msg,setMsg] = useState("");
     const [err,setErr] = useState(true);
-    const [path,setPath] = useState(<></>);
+    const nav = useNavigate();
     
     function signin(e) {
         setMsg("");
@@ -22,7 +22,7 @@ const Signin = () => {
                 password:form.current.password.value,
             }
             axios.post(base+'/signin',body)
-             .then(({data})=>{setMsg(data.msg);setErr(false);setPath(<Navigate to="/"></Navigate>)})
+             .then(({data})=>{setMsg(data.msg);setErr(false);nav("/")})
              .catch(()=>{setMsg("erreur venant du serveur");setErr(true);form.current.email.focus();})
         }else{
             form.current.password.focus();
@@ -33,7 +33,6 @@ const Signin = () => {
 
     return (
         <form ref={form} onSubmit={signin} className='form page'>
-            {path}
         <h1 className='primary'>Inscription</h1>
         <label htmlFor="email">E-mail:</label>
         <input required type="email" name='email'  id='email'/>

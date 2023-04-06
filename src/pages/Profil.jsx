@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, NavLink } from 'react-router-dom';
+import {  NavLink, useNavigate } from 'react-router-dom';
 import { setToken, setUser } from '../feature/user.slice';
 import Navigation from "../components/Navigation";
 import AboutUser from '../components/AboutUser';
@@ -13,7 +13,7 @@ const Profil = () => {
 
     const dispatch = useDispatch();
 
-    const [nav ,setNav] = useState(<></>);
+    const nav = useNavigate();
 
 
     function disconnect() {
@@ -22,7 +22,7 @@ const Profil = () => {
          .then(()=>{
             dispatch(setToken(""));
             dispatch(setUser(null));
-            setNav(<Navigate to="/login"></Navigate>)
+            nav("/login")
         });
     }
 
@@ -34,7 +34,6 @@ const Profil = () => {
             </Navigation>
             {profile?
             <div className='about App page'>
-                {nav}
                 <AboutUser profile={profile}></AboutUser>
                 <button className='warning'>Modifier mon compte</button>
                 <button onClick={disconnect}>Se deconnecter</button>

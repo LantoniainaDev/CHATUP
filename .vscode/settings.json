@@ -3,6 +3,7 @@
         "javascript":"javascriptreact"
     },
     "emmet.triggerExpansionOnTab": true,
+    "html.autoCreateQuotes": true,
     "editor.formatOnSave": true,
     "files.exclude": {
         "**/.git": true,

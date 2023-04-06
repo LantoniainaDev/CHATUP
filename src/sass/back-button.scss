@@ -1,0 +1,38 @@
+@import "_vars.scss";
+$s:40px;
+$pad:20px;
+
+%floating{
+    z-index: 2;
+    width: $s;
+    height: $s;
+    border-radius: 50px;
+    background-color: $primary;
+    color: white;
+
+    box-shadow: 1px 1px 4px 1px black;
+    transition: .2s;
+    
+    position: fixed !important;
+    &:hover,&:focus{
+        &::after{
+            display: none;
+        }
+        box-shadow: 1px 1px 2px 0 black;
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.Back{
+    @extend %floating;
+    top:$pad;
+    left:$pad;
+}
+
+.Top{
+    @extend %floating;
+    transform: rotate(90deg);
+    bottom: $pad;
+    right: $pad;
+}

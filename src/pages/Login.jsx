@@ -4,7 +4,8 @@ import React from 'react';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 // eslint-disable-next-line
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import BackButton from '../components/BackButton';
 import isconnected from '../feature/isconnected';
 import { setToken, setUser } from '../feature/user.slice';
 import '../sass/forms.scss';
@@ -14,7 +15,7 @@ const Login = () => {
     const dispatch = useDispatch();
 
     // eslint-disable-next-line
-    const [nav,setNav] = useState(<></>);
+    const nav = useNavigate();
     const [err,setErr] = useState("")
     async function login(e) {
         e.preventDefault();
@@ -36,13 +37,13 @@ const Login = () => {
         if (res) {
             isconnected(res)
              .then(e=>dispatch(setUser(e)))
-             .then(()=>setNav(<Navigate to="/profil"/>))
+             .then(()=>nav("/profil"))
         }
     }
 
     return (
         <form onSubmit={login} ref={form} className='form page'>
-            {nav}
+            <BackButton></BackButton>
             <h1>Connexion</h1>
             <label htmlFor="name">Nom:</label>
             <input required name='email' type="email" id='name'/>
