@@ -25,6 +25,11 @@ const Profil = () => {
             nav("/login")
         });
     }
+    function suppress() {
+        axios.delete(process.env.REACT_APP_BASE_URI+"/user/"+profile._id,{params:{token}})
+         .then(disconnect)
+         .catch(console.log)
+    }
 
     return (
         <div className='App'>
@@ -37,6 +42,7 @@ const Profil = () => {
                 <AboutUser profile={profile}></AboutUser>
                 <button className='warning'>Modifier mon compte</button>
                 <button onClick={disconnect}>Se deconnecter</button>
+                <button className='alert' onClick={suppress}>Supprimer mon compte</button>
                 <NavLink to="/login"><button className="primary">Se connectera un autre compte</button></NavLink>
             </div>:
             <div className='App page'>

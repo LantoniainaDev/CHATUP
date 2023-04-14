@@ -1,13 +1,19 @@
 // eslint-disable-next-line
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from "react-router-dom";
+import isconnected from '../feature/isconnected';
+import { setToken, setUser } from '../feature/user.slice';
 
 const Signin = () => {
     const form = useRef();
     const [msg,setMsg] = useState("");
     const [err,setErr] = useState(true);
     const nav = useNavigate();
+    
+    //pour le login
+    const dispatch = useDispatch();
     
     function signin(e) {
         setMsg("");
@@ -22,12 +28,35 @@ const Signin = () => {
                 password:form.current.password.value,
             }
             axios.post(base+'/signin',body)
-             .then(({data})=>{setMsg(data.msg);setErr(false);nav("/")})
-             .catch(()=>{setMsg("erreur venant du serveur");setErr(true);form.current.email.focus();})
+             .then(()=>{setMsg("data");setErr(false);})
+             .then(()=>login(body))
+             .catch((e)=>{
+                if (e.response.data.code === 11000) {
+                    setMsg("un compte a deja ete ouvert sur cet email");setErr(true);form.current.email.focus();
+                }
+                else{
+                    setMsg("erreur venant du serveur");setErr(true);form.current.email.focus();
+                }
+            })
         }else{
             form.current.password.focus();
             setErr(true);
             setMsg("Verifiez votre mot de passe");
+        }
+    }
+
+    async function login(body) {
+        const res = await axios.post(process.env.REACT_APP_BASE_URI+"/login",body)
+         .then((e)=>{
+            dispatch(setToken(e.data.cookie));
+            return e.data.cookie;
+         })
+        .catch((e)=>setErr(e? false:true));
+
+        if (res) {
+            isconnected(res)
+             .then(e=>dispatch(setUser(e)))
+             .then(()=>nav("/"))
         }
     }
 

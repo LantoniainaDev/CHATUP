@@ -1,9 +1,7 @@
-// eslint-disable-next-line
 import axios from 'axios';
 import React from 'react';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-// eslint-disable-next-line
 import { NavLink, useNavigate } from "react-router-dom";
 import BackButton from '../components/BackButton';
 import isconnected from '../feature/isconnected';
@@ -14,13 +12,11 @@ const Login = () => {
     const form = useRef();
     const dispatch = useDispatch();
 
-    // eslint-disable-next-line
     const nav = useNavigate();
-    const [err,setErr] = useState("")
+    const [err,setErr] = useState("");
     async function login(e) {
         e.preventDefault();
         setErr("");
-        // eslint-disable-next-line
         const body = {
             password:form.current.password.value,
             email:form.current.email.value,

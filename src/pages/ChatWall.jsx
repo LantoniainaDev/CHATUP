@@ -33,8 +33,8 @@ const ChatWall = () => {
             {axios_err ? <ErrorLoading tryagain={reloadPubs}></ErrorLoading>: 
             <div className="chats page">
                 {
-                    message.map((data,index)=>(
-                        <Message key={index} data={data}/>
+                    message.map((data)=>(
+                        <Message key={data._id} data={data}/>
                     ))
                 }
             </div>

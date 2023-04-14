@@ -13,6 +13,7 @@ const ChatBox = ({ profile, onPosted }) => {
         console.log("post message");
         axios.post(process.env.REACT_APP_BASE_URI+"/pubs/publish",{content},{params:{token}})
          .then(({data})=>onPosted(data))
+         .then(()=>form.current.content.value = "")
          .catch(e=>console.warn("Bip",e))
 
     }

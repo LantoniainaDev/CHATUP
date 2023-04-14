@@ -13,7 +13,11 @@ export const UserSlice = createSlice({
             state.user = payload;
         },
         setToken(state, { payload }){
-            global.cookieStore.set("token",payload);
+            try {
+                global.cookieStore.set("token",payload);
+            } catch (err) {
+                console.warn("les cookies ne sont pas accessibles :", err);
+            }
             state.token = payload;
         },
     }

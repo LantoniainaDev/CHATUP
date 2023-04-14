@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Avatar from './Avatar';
 import '../sass/mess.scss';
 import { about, com } from '../feature/isconnected';
@@ -38,6 +38,7 @@ const Message = ({ data }) => {
     };
     function sendCom(e) {
         e.preventDefault();
+        if (suppred) return "cette fonctionnalité n'est plus";
         const content = inpt.current.value;
         console.log(content,data._id);
         axios.post(process.env.REACT_APP_BASE_URI+"/coms/"+data._id,{content},{params:{token}})
@@ -64,14 +65,14 @@ const Message = ({ data }) => {
             <sub>publié le {format(data?.date)}</sub>
             <p className='txt App'>{data?.content}</p>
             <p>
-                {id? <button disabled={data?.likes.includes(id)} className='alert' onClick={like}>{data?.likes.length} Aimer</button>:null}
+                {id? <button disabled={data?.likes.includes(id) || suppred} className='alert' onClick={like}>{data?.likes.length} Aimer</button>:null}
                 {id? <button onClick={()=>setEditing(!editing)}>{coms.length} Commentaires</button>: null}
-                {id === user._id? <button onClick={suppr} className='alert'>Supprimer</button>: null}
+                {id === user._id? <button disabled={suppred} onClick={suppr} className='alert'>Supprimer</button>: null}
             </p>
             {editing? 
             <div className='comments'>
-                    {coms.map((com,key)=>(
-                    <Comment com={com}  key={key}></Comment>
+                    {coms.map((com)=>(
+                    <Comment com={com}  key={com._id}></Comment>
                     ))}
                 {id? <form onSubmit={sendCom}>
 
