@@ -19,6 +19,8 @@ différence entre le mode dev et le mode production:
 - creer un state redux pour les pubs
   - resolvant ainsi le systeme de likes et de suppression
 - resoudre le probleme de commentaires
-- annuler toute fonctionnalité des pubs supprimées
+- annuler toute fonctionnalité des pubs supprimées [DONE]
 - résoudre le problème de state du commentaire [DONE] il a suffit de donner une id unique pour chaque commentaire
-- login auto apres le signin
+- login auto apres le signin [DONE]
+- parametrer toutes les pages pour pouvoir fonctionner sans l'API
+- les caroussels
